@@ -43,6 +43,8 @@ func child() {
 		fmt.Println("Error setting hostname:", err)
 		os.Exit(1)
 	}
+	//TODO Create the /home/ubuntu/rootfs inside the code
+
 	// Change to the new root file system.
 	if err := syscall.Chroot("/home/ubuntu/rootfs"); err != nil {
 		fmt.Println("Error changing root:", err)
