@@ -14,7 +14,7 @@ jobs:
     - name: Run ls /bin/ps
       run: ls /bin
     - name: Run ps in our OS without container
-      run: ps -a
+      run: ps 
 
     - name: Set up Go 1.21.5
       uses: actions/setup-go@v2
