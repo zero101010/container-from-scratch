@@ -11,6 +11,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+    - name: Run ls /bin/ps
+      run: ls /bin
     - name: Run ps in our OS without container
       run: ps -a
 
