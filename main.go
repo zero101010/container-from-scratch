@@ -16,21 +16,6 @@ func main() {
 	default:
 		panic("what??")
 	}
-	deleteRootfs()
-}
-
-func deleteRootfs() {
-	wgetCmd := exec.Command("sudo", "rm", "-r", "rootfs")
-
-	// config standard output
-	wgetCmd.Stdout = os.Stdout
-	wgetCmd.Stderr = os.Stderr
-
-	// Run wget
-	if err := wgetCmd.Run(); err != nil {
-		fmt.Println("Erro ao executar o comando rm:", err)
-		return
-	}
 }
 
 func createRootfs() {
