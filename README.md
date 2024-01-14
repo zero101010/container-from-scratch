@@ -43,3 +43,5 @@ bash container.bash igor_container
 sudo go run main.go run /bin/sh
 ```
 
+- If do want to see this working it's only necessary enter in our github [actions](https://github.com/zero101010/container-from-scratch/actions/runs/7521743984/job/20472940556) that have the CI's that show the difference about run command `ps` inside of our container and outside.
+
