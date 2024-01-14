@@ -16,6 +16,89 @@ func main() {
 	default:
 		panic("what??")
 	}
+	deleteRootfs()
+}
+
+func deleteRootfs() {
+	wgetCmd := exec.Command("sudo", "rm", "-r", "rootfs")
+
+	// config standard output
+	wgetCmd.Stdout = os.Stdout
+	wgetCmd.Stderr = os.Stderr
+
+	// Run wget
+	if err := wgetCmd.Run(); err != nil {
+		fmt.Println("Erro ao executar o comando rm:", err)
+		return
+	}
+}
+
+func createRootfs() {
+	wgetCmd := exec.Command("wget", "https://dl-cdn.alpinelinux.org/alpine/v3.18/releases/x86_64/alpine-minirootfs-3.18.0-x86_64.tar.gz")
+
+	// Config the output
+	wgetCmd.Stdout = os.Stdout
+	wgetCmd.Stderr = os.Stderr
+
+	// Run command wget
+	if err := wgetCmd.Run(); err != nil {
+		fmt.Println("Erro ao executar o comando wget:", err)
+		return
+	}
+
+	// mkdir
+	mkdirCmd := exec.Command("mkdir", "rootfs")
+
+	// config output default
+	mkdirCmd.Stdout = os.Stdout
+	mkdirCmd.Stderr = os.Stderr
+
+	// Run mkdir
+	if err := mkdirCmd.Run(); err != nil {
+		fmt.Println("Erro ao executar o comando mkdir:", err)
+		return
+	}
+
+	//  tar
+	tarCmd := exec.Command("tar", "-xzf", "alpine-minirootfs-3.18.0-x86_64.tar.gz", "-C", "rootfs")
+
+	// Config default output
+	tarCmd.Stdout = os.Stdout
+	tarCmd.Stderr = os.Stderr
+
+	// Run tar
+	if err := tarCmd.Run(); err != nil {
+		fmt.Println("Erro ao executar o comando tar:", err)
+		return
+	}
+
+	// rm
+	rmCmd := exec.Command("rm", "alpine-minirootfs-3.18.0-x86_64.tar.gz")
+
+	// config standard output
+	rmCmd.Stdout = os.Stdout
+	rmCmd.Stderr = os.Stderr
+
+	// Run rm
+	if err := rmCmd.Run(); err != nil {
+		fmt.Println("Erro ao executar o comando tar:", err)
+		return
+	}
+
+	fmt.Println("Comandos executados com sucesso.")
+}
+
+func checkDirExist(path string) bool {
+	dirPath := path
+
+	// Check if dir rootfs exist to not create another if alredy exist
+	if _, err := os.Stat(dirPath); os.IsNotExist(err) {
+		fmt.Printf("O diretório %s não existe.\n", dirPath)
+		return false
+	} else {
+		fmt.Printf("O diretório %s existe.\n", dirPath)
+		return true
+	}
 }
 
 func run() {
@@ -43,10 +126,20 @@ func child() {
 		fmt.Println("Error setting hostname:", err)
 		os.Exit(1)
 	}
-	//TODO Create the /home/ubuntu/rootfs inside the code
+
+	//Create the $PATH/rootfs to use the alpine struture of file and insert inside
+	dir, err := os.Getwd()
+	if err != nil {
+		fmt.Println("Erro ao obter o diretório de trabalho atual:", err)
+		return
+	}
+	fullPath := dir + "/rootfs"
+	if checkDirExist(fullPath) == false {
+		createRootfs()
+	}
 
 	// Change to the new root file system.
-	if err := syscall.Chroot("/home/ubuntu/rootfs"); err != nil {
+	if err := syscall.Chroot(fullPath); err != nil {
 		fmt.Println("Error changing root:", err)
 		os.Exit(1)
 	}

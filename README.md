@@ -4,6 +4,6 @@
 - I love golang, and I thought that would be a good chance to use my learned about container and use golang.
 
 ```
-sudo ./container run /bin/sh
+sudo go run main.go run /bin/sh
 ```
 
