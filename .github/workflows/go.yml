@@ -23,4 +23,8 @@ jobs:
 
     - name: Build
       run: go build -v ./...
+    - name: Check build
+      run: ls
+    - name: Run container
+      run: go run main.go run /bin/ps
 
