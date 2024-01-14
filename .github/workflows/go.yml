@@ -26,5 +26,5 @@ jobs:
     - name: Check build
       run: ls
     - name: Run container
-      run: go run main.go run /bin/ps
+      run: sudo go run main.go run /bin/ps
 
