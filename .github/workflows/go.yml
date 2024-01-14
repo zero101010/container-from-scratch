@@ -12,7 +12,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Run ps in our OS without container
-      run: ps -a
+      run: sudo ps -a
 
     - name: Set up Go 1.21.5
       uses: actions/setup-go@v2
