@@ -38,7 +38,7 @@ terraform apply
 ```
 ## Create the container with Bash
 - Observation, bash script only work in linux environment
-- If you need can run the `container.bash` that I create to explain this concepts. To run this bash only need pass the name of the new dir as parameter. For example, in this case I choode the name `igor_container`, but could be any name that you want:
+- To run this bash only need pass the name of the new dir as parameter. For example, in this case I choose the name `igor_container`, but could be any name that you want:
 
 ```
 bash container.bash igor_container
@@ -46,13 +46,13 @@ bash container.bash igor_container
 - If need more details about how the container works watch this video: https://www.youtube.com/watch?v=S7Hv2CdNmuA
 ## Create the container with Golang
 - Observation, go script only works in linux environment
-- This application was a example to explain how works the container. To do This I understand the concept of that running in bash script and isolating the process using namespace, creating CHROOT and the CGROUP. If do you want to check how this work only with bash script fell free to check `definition.md` and `container.bash`.
-- I love golang, and I thought that would be a good chance to use my learned about container and use golang.\
-- It's important pay attention about the concepts from creating of containers. If you want to understand about how this containers works, this is the goal of this project.
+- This application was a example to explain how works the container. To do This I understand the concept of that running in bash script and isolating the process using namespace, creating CHROOT and the CGROUP. If do you want to check how this work only with bash script fell free to check `container.bash`.
+- I love golang, and I thought that would be a good chance to use my learned about container and use golang.
+- It's important pay attention about the concepts from creating of containers. Understand about how  containers works is the goal of this project.
 - To run our code em golang run the command:
 ```
 sudo go run main.go run /bin/sh
 ```
 
-- If do want to see this working it's only necessary enter in our github [actions](https://github.com/zero101010/container-from-scratch/actions/runs/7521743984/job/20472940556) that have the CI's that show the difference about run command `ps` inside of our container and outside.
+- If do you want to check how this works it's only necessary enter in our github [actions](https://github.com/zero101010/container-from-scratch/actions/runs/7523306008/job/20476500493) that have the CI's that show the difference about run command `ps` inside of our container and outside. The steps are called `Run ps in our OS without container` and `Run PS inside of the container`
 

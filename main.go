@@ -24,7 +24,7 @@ func createRootfs() {
 	wgetCmd := exec.Command("wget", "https://dl-cdn.alpinelinux.org/alpine/v3.18/releases/x86_64/alpine-minirootfs-3.18.0-x86_64.tar.gz")
 
 	// Config the output
-	// wgetCmd.Stdout = os.Stdout
+	wgetCmd.Stdout = os.Stdout
 	wgetCmd.Stderr = os.Stderr
 
 	// Run command wget
@@ -37,7 +37,7 @@ func createRootfs() {
 	mkdirCmd := exec.Command("mkdir", "rootfs")
 
 	// config output default
-	// mkdirCmd.Stdout = os.Stdout
+	mkdirCmd.Stdout = os.Stdout
 	mkdirCmd.Stderr = os.Stderr
 
 	// Run mkdir
@@ -50,7 +50,7 @@ func createRootfs() {
 	tarCmd := exec.Command("tar", "-xzf", "alpine-minirootfs-3.18.0-x86_64.tar.gz", "-C", "rootfs")
 
 	// Config default output
-	// tarCmd.Stdout = os.Stdout
+	tarCmd.Stdout = os.Stdout
 	tarCmd.Stderr = os.Stderr
 
 	// Run tar
