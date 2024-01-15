@@ -1,11 +1,11 @@
-name: Go Build and Test
+name: Go container compare SO vs container ps
 on:
   push:
     branches:
       - master
 
 jobs:
-  build:
+  compare-container-vs-so-process:
     runs-on: ubuntu-latest
 
     steps:
