@@ -28,6 +28,7 @@ sudo unshare -p -f --mount-proc /bin/bash
 sudo cgexec -g cpu,memory,pids:/container_dir unshare --pid --uts --mount --fork chroot container_dir
 ```
 ## Create the container with Bash
+- Observation, bash script only work in linux environment
 - If you need can run the `container.bash` that I create to explain this concepts. To run this bash only need pass the name of the new dir as parameter. For example:
 
 ```
@@ -35,6 +36,7 @@ bash container.bash igor_container
 ```
 - If need more details about how the container works watch this video: https://www.youtube.com/watch?v=S7Hv2CdNmuA
 ## Create the container with Golang
+- Observation, go script only works in linux environment
 - This application was a example to explain how works the container. To do This I understand the concept of that running in bash script and isolating the process using namespace, creating CHROOT and the CGROUP. If do you want to check how this work only with bash script fell free to check `definition.md` and `container.bash`.
 - I love golang, and I thought that would be a good chance to use my learned about container and use golang.\
 - It's important pay attention about the concepts from creating of containers. If you want to understand about how this containers works, this is the goal of this project.

@@ -27,7 +27,7 @@ func createRootfs() {
 
 	// Run command wget
 	if err := wgetCmd.Run(); err != nil {
-		fmt.Println("Erro ao executar o comando wget:", err)
+		fmt.Println("Error to run wget", err)
 		return
 	}
 
@@ -40,7 +40,7 @@ func createRootfs() {
 
 	// Run mkdir
 	if err := mkdirCmd.Run(); err != nil {
-		fmt.Println("Erro ao executar o comando mkdir:", err)
+		fmt.Println("Error to run mkdir:", err)
 		return
 	}
 
@@ -53,7 +53,7 @@ func createRootfs() {
 
 	// Run tar
 	if err := tarCmd.Run(); err != nil {
-		fmt.Println("Erro ao executar o comando tar:", err)
+		fmt.Println("Error to run:", err)
 		return
 	}
 
@@ -66,11 +66,11 @@ func createRootfs() {
 
 	// Run rm
 	if err := rmCmd.Run(); err != nil {
-		fmt.Println("Erro ao executar o comando tar:", err)
+		fmt.Println("Error to run tar:", err)
 		return
 	}
 
-	fmt.Println("Comandos executados com sucesso.")
+	fmt.Println("Commands applied sucessfuly")
 }
 
 func checkDirExist(path string) bool {
@@ -78,10 +78,10 @@ func checkDirExist(path string) bool {
 
 	// Check if dir rootfs exist to not create another if alredy exist
 	if _, err := os.Stat(dirPath); os.IsNotExist(err) {
-		fmt.Printf("O diretório %s não existe.\n", dirPath)
+		fmt.Printf("Dir %s doesn't exist.\n", dirPath)
 		return false
 	} else {
-		fmt.Printf("O diretório %s existe.\n", dirPath)
+		fmt.Printf("Dir %s exist.\n", dirPath)
 		return true
 	}
 }
@@ -115,7 +115,7 @@ func child() {
 	//Create the $PATH/rootfs to use the alpine struture of file and insert inside
 	dir, err := os.Getwd()
 	if err != nil {
-		fmt.Println("Erro ao obter o diretório de trabalho atual:", err)
+		fmt.Println("Error to get current Dir:", err)
 		return
 	}
 	fullPath := dir + "/rootfs"
