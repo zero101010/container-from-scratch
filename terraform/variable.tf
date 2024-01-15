@@ -11,6 +11,8 @@ variable "ec2_name"{
 variable "volume_size"{
     default = "30"
 }
+variable "key_name"{
+}
 
 ## Security Group(sg) Variables
 variable "ports_allow"{

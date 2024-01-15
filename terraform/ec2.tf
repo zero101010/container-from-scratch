@@ -4,7 +4,7 @@ resource "aws_instance" "ec2_instance" {
   subnet_id       = aws_subnet.public_subnet.id
   security_groups = [aws_security_group.instance_sg.id]
   associate_public_ip_address = true
-  key_name = "privateIgor"
+  key_name = var.key_name
   tags = {
     Name = var.ec2_name
   }

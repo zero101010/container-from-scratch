@@ -1,5 +1,5 @@
 # My own container
-## How Docker works ?
+## How Containers works ?
 ### Chroot
 - It's used to create a root dir, isolating the root dir. To do this run the bash commands bellow to create isolate root files:
 ```
@@ -27,9 +27,18 @@ sudo unshare -p -f --mount-proc /bin/bash
 ```
 sudo cgexec -g cpu,memory,pids:/container_dir unshare --pid --uts --mount --fork chroot container_dir
 ```
+
+## Terraform 
+- If you don't use a linux environment as me, I created terraform directory to create a simple ec2 instance in AWS to help you to run this labor. It's only necessary be logged in AWS cli, if you don't know how to do this follow this [ link](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html).
+- After configure aws cli create a Certificate in AWS console to use to make ssh connections. After create go to `terraform/terraform.tfvars` and change the `key_name` value to the name that was created for you. After this it's only enter inside of `terraform` directory and run this commands:
+```
+terraform init
+terraform plan
+terraform apply
+```
 ## Create the container with Bash
 - Observation, bash script only work in linux environment
-- If you need can run the `container.bash` that I create to explain this concepts. To run this bash only need pass the name of the new dir as parameter. For example:
+- If you need can run the `container.bash` that I create to explain this concepts. To run this bash only need pass the name of the new dir as parameter. For example, in this case I choode the name `igor_container`, but could be any name that you want:
 
 ```
 bash container.bash igor_container
